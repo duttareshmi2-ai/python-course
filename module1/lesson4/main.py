@@ -11,28 +11,28 @@ import math
 
 
 # Example for Arithmetic:
-calc=2.67+3.8989
-print(round(calc,4))
-print(2-3)
-print(3*2)
-print(math.ceil(5/2)) #2.5 
-print(10%5)
-print(2**3)
-print(5//2)
+# calc=2.67+3.8989
+# print(round(calc,4))
+# print(2-3)
+# print(3*2)
+# print(math.ceil(5/2)) #2.5 
+# print(10%5)
+# print(2**3)
+# print(5//2)
 
 # Example for comparison:
 
-print(3<5)
-print(3>5)
-print(3==5)
-print(3!=5)
-print(3>=5)
+# print(3<5)
+# print(3>5)
+# print(3==5)
+# print(3!=5)
+# print(3>=5)
 
 # Example for assignment:
 
-a=3
-a+=1
-print(a)
+# a=3
+# a+=1
+# print(a)
 
 
 # Activity 1:
@@ -83,3 +83,34 @@ print(a)
 #    Store the final value in `perc`.
 
 # 5) Print the percentage stored in `perc`.
+# Activity 1:
+# tree1=int(input("Enter the value of tree1:"))
+# tree2=int(input("Enter the value of tree2:"))
+# tree3=int(input("Enter the value of tree3:"))
+# tree4=int(input("Enter the value of tree4:"))
+# tree5=int(input("Enter the value of tree5:"))
+# sum=tree1+tree2+tree3+tree4+tree4+tree5
+# print("The sum of all the trees are ", sum)
+# average=sum/5
+# print(average)
+
+# Activity 2:
+# Amount=int(input("Enter how much money you want to withdraw from your account: "))
+# note_1=Amount/100
+# remainder1=Amount%100
+# print("The number of 100 notes is ", note_1)
+# note_2=remainder1/50
+# remainder2=Amount%50
+# print("The number of 50 notes is ", note_2)
+# note_3=remainder2/10
+# print("The number of 10 notes is ", note_3)
+
+# Activity 3:
+# maths = int(input("Enter the marks of maths (out of 100): "))
+# english = int(input("Enter the marks of english (out of 100): "))
+# science = int(input("Enter the marks of science (out of 100): "))
+# hindi = int(input("Enter the marks of hindi (out of 100): "))
+# total_marks = maths + english + science + hindi
+# print("Total marks:", total_marks)
+# perc = total_marks / 400 * 100
+# print("Percentage:", perc)
