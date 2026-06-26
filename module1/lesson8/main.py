@@ -78,6 +78,17 @@ sum1=1+2**3 #9 #27
 #    - Divide `num2` by `total_number`
 #    - Store it in `mean2`
 #    - Print `mean2`.
+# mean1=34
+# wrong_number=12
+# correct_number=67
+# total_number=112
+# sum=mean1*total_number
+# print(sum)
+# num=sum-wrong_number
+# num2=num+correct_number
+# print(num2)
+# mean2=num2/total_number
+# print(mean2) 
 
 # Activity 4:
 # 1) Take three integer inputs from the user and store them in `a`, `b`, and `c`.
@@ -97,3 +108,24 @@ sum1=1+2**3 #9 #27
 #    - Else if `avg` is greater than only `c`, print that it is just higher than `c`.
 
 # 4) If none of the above conditions match, print "invalid input".
+# a=34
+# b=43
+# c=77
+# avg=a+b+c/3
+# print(avg)
+# if avg > a and b and c:
+#     print("Average is higher than a,b and c.")
+# elif avg > a and b :
+#     print("Average is higher than a and b.")
+# elif avg > a and c:
+#     print("Average is higher than a and c.")
+# elif avg > b and c:
+#     print("Average is higher than b and c.")
+# elif avg > a:
+#     print("Average is higher than a.")
+# elif avg > b:
+#     print("Average is higher than b.")
+# elif avg > c:
+#     print("Average is higher than c.")
+# else:
+#     print("Invalid input.")
