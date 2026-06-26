@@ -1,5 +1,5 @@
-i=input("What is the full form of BODMAS ?:")
-if i.lower()=="Bracket of Division Multiplication Addition and subtraction":
-    print("Correct!")
+temperature=10
+if temperature<5:
+    print("Wear a warm jacket.")
 else:
-    print("Wrong!")
+    print("Wear a normal jacket.")
