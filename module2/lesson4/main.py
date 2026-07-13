@@ -26,7 +26,7 @@
 
 import random
 import tensorflow as tf
-from tensorflow import keras
+from tensorflow import keras # pyright: ignore[reportMissingModuleSource]
 from keras import layers, models
 import matplotlib.pyplot as plt
 
