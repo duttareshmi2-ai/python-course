@@ -1,18 +1,32 @@
-from rich import Console
-# Rule-based Chatbots: 
-# How they work: 
-# 1. Predefined Rules: Use a set of hard-coded rules and patterns to respond to user inputs 
-# 2. Pattern Matching: Identify keywords or phrases in user input to trigger specific responses. 
-# 3. Decision Trees: Use nested conditional statements to handle complex conversations flow. 
-# Advanced Rule-based Chatbots: 1. Error Handling: Providing meaningful messages when chatbot dosen't understand the user. 2. State Management: Keep the track of conversation context to provide context-aware responses. 3.Modular Design: Break downs the chatbot's functionality into module(e.g. greeting,help,FAQ's)
+# Rule-based chatbot using only built-in Python features.
+# It can give trip packing tips and book suggestions.
 
-# NLP : Natural Language Processing (NLP) it's a branch of AI that helps computers understand, interpret, and generate human language.
-# Importance: Understanding user intent and Handling Variations in Language.
-# NLP in chatbots: 1. Understanding variations 2.Contextual Responses 3. Handling Ambiguity.
+print("Hi! My name is Dumbai.")
+print("I can help you with packing tips for trips or book suggestions.")
+print("Type 'trip', 'book', or 'exit' to stop.")
 
+while True:
+    user_input = input("What would you like help with? ").strip().lower()
 
-# Activity : Create an rule-based chatbot using Python.
-c=Console()
-c.print("Hi! My name is dumbai. ", style="orange")
-c.print("-I can help you with packaging (tips for trips)", style="yellow")
-c.print("-I can ")
+    if user_input in ["exit", "bye", "quit"]:
+        print("Bye! Have a safe trip and happy reading.")
+        break
+
+    if "trip" in user_input or "pack" in user_input or "travel" in user_input:
+        print("Here are some trip packing tips:")
+        print("1. Make a checklist before you pack.")
+        print("2. Pack only the things you really need.")
+        print("3. Put important items in your handbag.")
+        print("4. Carry a small first-aid kit.")
+        print("5. Check the weather before traveling.")
+
+    elif "book" in user_input or "read" in user_input:
+        print("Here are some book suggestions:")
+        print("1. The Alchemist by Paulo Coelho")
+        print("2. Think and Grow Rich by Napoleon Hill")
+        print("3. Harry Potter by J.K. Rowling")
+        print("4. Atomic Habits by James Clear")
+
+    else:
+        print("I can help with trip packing or book recommendations.")
+        print("Try asking about 'trip' or 'book'.")
