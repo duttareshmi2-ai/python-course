@@ -1,0 +1,14 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "run cpp",
+      "type": "shell",
+      "command": "g++ main.cpp -o a.exe && ./a.exe",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}
