@@ -1,0 +1,8 @@
+CREATE DATABASE blastdb;
+
+USE blastdb;
+
+CREATE TABLE blasts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    timestamp DATETIME NOT NULL
+);

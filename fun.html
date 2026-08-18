@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BLast Counter</title>
+  <style>
+    body {
+      margin: 0;
+      background: radial-gradient(circle at center, #000000, #111111);
+      color: red;
+      font-family: 'DS-Digital', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    #timer {
+      font-size: 64px;
+      background: rgba(255,165,0,0.8);
+      border: 4px solid yellow;
+      border-radius: 40px;
+      padding: 20px 40px;
+      box-shadow: 0 0 30px yellow;
+      animation: glow 1s infinite alternate;
+      transition: transform 0.3s ease;
+    }
+    #timer:hover {
+      transform: scale(1.1);
+    }
+    @keyframes glow {
+      from { box-shadow: 0 0 10px yellow; }
+      to { box-shadow: 0 0 40px red; }
+    }
+    #blast {
+      font-size: 96px;
+      font-family: 'Minecraft', monospace;
+      color: red;
+      margin-top: 40px;
+      text-shadow: 0 0 20px orange, 0 0 40px yellow;
+      animation: shake 0.3s infinite;
+    }
+    @keyframes shake {
+      0% { transform: translate(2px, 2px); }
+      25% { transform: translate(-2px, 2px); }
+      50% { transform: translate(2px, -2px); }
+      75% { transform: translate(-2px, -2px); }
+      100% { transform: translate(2px, 2px); }
+    }
+    .explosion {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, orange, red, black);
+      animation: expand 1s forwards;
+    }
+    @keyframes expand {
+      from { transform: scale(0); opacity: 1; }
+      to { transform: scale(10); opacity: 0; }
+    }
+    .smoke {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(128,128,128,0.5), transparent);
+      animation: fade 3s forwards;
+    }
+    @keyframes fade {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div id="timer">00:00:00</div>
+  <div id="blast"></div>
+
+  <script>
+    let total = 0;
+    let running = true;
+    const timerEl = document.getElementById("timer");
+    const blastEl = document.getElementById("blast");
+
+    function speakTime(h, m, s) {
+      let parts = [];
+      if (h > 0) parts.push(h + (h === 1 ? " hour" : " hours"));
+      if (m > 0) parts.push(m + (m === 1 ? " minute" : " minutes"));
+      parts.push(s + (s === 1 ? " second" : " seconds"));
+      const phrase = parts.join(", ");
+      const utter = new SpeechSynthesisUtterance(phrase);
+      utter.rate = 1.0;
+      speechSynthesis.cancel();
+      speechSynthesis.speak(utter);
+    }
+
+    function updateTimer() {
+      if (!running) return;
+      let h = Math.floor(total / 3600);
+      let m = Math.floor((total % 3600) / 60);
+      let s = total % 60;
+      timerEl.textContent = 
+        String(h).padStart(2,"0")+":"+
+        String(m).padStart(2,"0")+":"+
+        String(s).padStart(2,"0");
+      speakTime(h, m, s);
+      total++;
+    }
+    setInterval(updateTimer, 1000);
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechRecognition) {
+      const recognition = new SpeechRecognition();
+      recognition.continuous = true;
+      recognition.lang = "en-US";
+      recognition.onresult = (event) => {
+        const transcript = event.results[event.results.length-1][0].transcript.trim().toLowerCase();
+        console.log("Heard:", transcript);
+        if (transcript.includes("blast")) {
+          running = false;
+          timerEl.style.display = "none";
+          typingAnimation("BLAST!");
+          triggerExplosion();
+          // Log blast to backend
+          fetch("blast.php", { method: "POST" });
+        }
+      };
+      recognition.start();
+    }
+
+    function typingAnimation(text, index=0) {
+      if (index < text.length) {
+        blastEl.textContent = text.slice(0, index+1);
+        setTimeout(() => typingAnimation(text, index+1), 200);
+      }
+    }
+
+    function triggerExplosion() {
+      for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+          const explosion = document.createElement("div");
+          explosion.className = "explosion";
+          document.body.appendChild(explosion);
+          setTimeout(() => explosion.remove(), 1000);
+        }, i * 300);
+      }
+      const smoke = document.createElement("div");
+      smoke.className = "smoke";
+      document.body.appendChild(smoke);
+      setTimeout(() => smoke.remove(), 3000);
+    }
+  </script>
+</body>
+</html>
