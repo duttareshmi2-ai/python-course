@@ -1,22 +1,37 @@
-# Grocery Billing Queue
+prices = {
+	"apple": 1.50,
+	"bread": 2.00,
+	"milk": 3.00,
+	"rice": 5.00,
+}
 
-# Step 1: List of grocery items
-queue = ["Milk", "Bread", "Eggs", "Rice", "Juice"]
+while True:
+	bill = []
+	total = 0
 
-# Step 2: While loop to process items
-i = 0
-while i < len(queue):   # repeat until all items are processed
-    print("Billing item:", queue[i])
-    i += 1              # update loop variable to stop the loop
+	print("\nEnter grocery items. Type 'exit' to print the bill.")
 
-print("All items billed!")
+	while True:
+		item = input("Item: ").lower()
 
-# -------------------------------
-# Infinite Loop Example (for study)
-# -------------------------------
-# WARNING: This will never stop unless you break it manually
-queue2 = ["Milk", "Bread", "Eggs"]
-j = 0
-while j < len(queue2):
-    print("Billing item:", queue2[j])
-    # forgot j += 1 → loop never ends!
+		if item == "exit":
+			break
+
+		if item not in prices:
+			print("Item not available.")
+			continue
+
+		quantity = int(input("Quantity: "))
+		cost = prices[item] * quantity
+		bill.append((item, quantity, cost))
+		total += cost
+
+	print("\n----- GROCERY BILL -----")
+	for item, quantity, cost in bill:
+		print(f"{item.title()} x {quantity} = ${cost}")
+	print(f"Total: ${total}")
+	print("------------------------")
+
+	again = input("Start a new bill? (yes/no): ").lower()
+	if again != "yes":
+		break
