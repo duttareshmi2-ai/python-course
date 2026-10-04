@@ -1,0 +1,43 @@
+import tkinter as tk
+# root = tk.Tk()
+# root.title("Number Pad")
+# root.geometry("250x300")
+# root.config(bg = "black")
+# nums = [[9,8,7],[6,5,4],[3,2,1],["#" , 0 , "*" ]]
+# for i in range(4):
+#     root.columnconfigure(i , weight=1 , minsize=75)
+#     root.rowconfigure(i , weight = 1 , minsize=50)
+#     for j in range(0,3):
+#         frame = tk.Frame(master = root , relief="sunken"  , borderwidth = 1)
+#         frame.grid(row = i , column = j)
+#         label = tk.Label(master = frame , text = nums[i][j] , bg = "green"  , fg = "white")
+#         label.pack(padx = 3 , pady = 3)
+# root.mainloop()
+root = tk.Tk()
+root.geometry("400x400")
+root.title("Login app")
+frame = tk.Frame(master = root , height=200 , width=360 , bg = "orange")
+label1 = tk.Label(frame , text = "Full name" , bg = "white" , fg = "black" , width=12)
+label2 = tk.Label(frame , text = "Email id" , bg = "white" , fg = "black" , width=12)
+label3 = tk.Label(frame , text = "Enter password" , bg = "white" , fg = "black" , width=12)
+nameentry = tk.Entry(frame)
+emailentry = tk.Entry(frame)
+passwordentry = tk.Entry(frame , show = "*")
+def message():
+    name = nameentry.get()
+    greet = "Hey "+name
+    msg = "\n Congratulation for you new account in Codingal !"
+    textbox.insert( tk.END , greet)
+    textbox.insert( tk.END , msg)
+textbox = tk.Text(bg = "black" , fg = "red")
+btn = tk.Button(text = "create account" , command = message , bg = "white" , fg = "black")
+frame.place(x = 20 , y = 0)
+label1.place(x = 20 , y = 20)
+nameentry.place(x = 150 , y = 20)
+label2.place(x = 20 , y = 80)
+emailentry.place(x = 150 , y = 80)
+label3.place(x = 20 , y = 140)
+passwordentry.place(x = 150 , y = 140)
+btn.place(x = 130 , y = 210)
+textbox.place(y = 250)
+root.mainloop()
