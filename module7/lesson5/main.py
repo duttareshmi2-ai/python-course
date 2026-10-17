@@ -63,6 +63,7 @@ def fire_bullet(x , y):
 def is_collision(enemy_x , enemy_y , bullet_x , bullet_y):
     distance = math.sqrt((enemy_x - bullet_x)**2 + (enemy_y - bullet_y)**2)
     return distance<COLLIDE_DISTANCE
+#--------------------------------------------part 1--------------------------------------------------------------------------------#
 running = True
 while running:
     clock.tick(60)
@@ -113,3 +114,4 @@ while running:
     show_score(text_x , text_y)
     pg.display.update()
 pg.quit()
+#------------------------------------------------------part 2 -------------------------------------------------------------------------------#
