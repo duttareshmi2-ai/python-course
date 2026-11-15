@@ -1,0 +1,13 @@
+CLONE ME: SETUP
+
+1. Keep this folder whole: clone_me.py and modnet.onnx (the AI model, 26 MB) must stay together.
+2. Open a terminal INSIDE this folder and install the three packages once:
+       python -m pip install -r requirements.txt
+   (on Mac or Linux you may need python3 instead of python). Use the same Python that runs the program.
+3. Run:
+       python clone_me.py
+4. A window called "Clone Me" opens with your camera. Click on it once, so it gets your key presses.
+
+Needs: Python 3.10 or newer and a webcam. No internet is needed after the install. Nothing you film leaves your computer.
+If the window closes at once, read the terminal: the error is there.
+Camera busy or blocked? Close Zoom, Teams or the camera app. On Windows: Settings > Privacy > Camera, allow apps to use the camera.

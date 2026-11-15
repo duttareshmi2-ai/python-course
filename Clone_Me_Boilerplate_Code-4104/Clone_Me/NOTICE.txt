@@ -1,0 +1,3 @@
+modnet.onnx: MODNet portrait matting model, ONNX export from the Hugging Face repository Xenova/modnet
+(https://huggingface.co/Xenova/modnet), tagged Apache-2.0 there.
+Original MODNet: https://github.com/ZHKKKe/MODNet, licensed Apache-2.0 (checked Nov 1, 2026). Licence text: LICENSE-MODNet-Apache-2.0.txt.
