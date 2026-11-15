@@ -19,7 +19,7 @@ with open(r"C:\Users\dutta\OneDrive\Desktop\python course\Live_Object_Detector_B
     coco = json.load(file)["coco"]
 NAMES = [coco[key] for key in sorted(coco, key=int)]
 
-net = cv2.dnn.readNetFromONNX("detector.onnx")
+net = cv2.dnn.readNetFromONNX(r"C:\Users\dutta\OneDrive\Desktop\python course\Live_Object_Detector_Boilerplate_Code-7f1d\Live_Object_Detector_Boilerplate\detector.onnx")
 
 cells = [SIZE // stride for stride in STRIDES]
 GRID = np.concatenate([np.indices((n, n))[::-1].reshape(2, -1).T for n in cells])
@@ -48,8 +48,8 @@ def detect(frame):
     confidences = scores.max(axis=1)
     # (given) D: change each box into (x, y, w, h) on your ORIGINAL picture.
     boxes = (np.hstack([centres - sizes / 2, sizes]) / scale).astype(int)
-    keep = cv2.dnn.NMSBoxesBatched(boxes.tolist() , confidences.tolist() , MIN_SCORE , 0.5)
-    return [(NAMES[class_ids[i]] , boxes[i]) for i in keep]   # placeholder: replace this line with your own
+    keep = cv2.dnn.NMSBoxesBatched(boxes.tolist() , confidences.tolist() , class_ids.tolist() , MIN_SCORE , 0.5)
+    return [(NAMES[class_ids[i]] , boxes[i]) for i in np.array(keep).flatten()]   # placeholder: replace this line with your own
 
 
 # (given) the camera loop: one picture at a time. TODO 5 is inside it.
@@ -58,9 +58,9 @@ video = cv2.VideoCapture(0)
 # (given) self-check: runs detect() on the first camera picture, so you can test TODO 1 to 4 before TODO 5.
 # Point the camera at something (a cup, a bottle, yourself). When TODO 1 to 4 are right you see, for example:
 #     objects found: ['cup']      (if it shows [] hold something in front of the camera and run again)
-ok, first = video.read()
-if ok:
-    print("objects found:", [name for name, box in detect(first)])
+# ok, first = video.read()
+# if ok:
+#     print("objects found:", [name for name, box in detect(first)])
 
 while True:
     ok, frame = video.read()
