@@ -1,46 +1,131 @@
+import cv2
 import numpy as np
 
-def confidence_explorer(objectness, class_scores):
-    print("🚀 Scoring every prediction...")
+# --------------------------------------------------
+# DETECTION CONFIDENCE LAB
+# --------------------------------------------------
 
-    # Part 1: objectness × class score
+def analyze_detections(frame, boxes, objectness, class_scores, class_names):
+    """
+    boxes:        (N,4) [x,y,w,h]
+    objectness:   (N,)
+    class_scores: (N,C)
+    """
+
+    # Part 1
     scores = objectness[:, np.newaxis] * class_scores
 
-    print("🎯 Finding each prediction's favorite class...")
-
-    # Part 2: best class and confidence
+    # Part 2
     best_class = np.argmax(scores, axis=1)
     best_score = np.max(scores, axis=1)
 
-    print("\nTop predictions:")
-    for i in range(len(best_class)):
-        print(
-            f"Prediction {i:2d}: "
-            f"Class {best_class[i]} "
-            f"(confidence = {best_score[i]:.4f})"
-        )
+    thresholds = [0.30, 0.50, 0.70]
 
-    print("\n🔍 Testing confidence thresholds...")
+    print("\n========== DETECTION REPORT ==========")
 
-    # Part 4: try three thresholds
-    for threshold in [0.30, 0.50, 0.70]:
+    for threshold in thresholds:
+
         keep = best_score >= threshold
 
-        print(
-            f"Threshold {threshold:.2f}: "
-            f"{np.sum(keep)} predictions kept"
+        kept_count = np.sum(keep)
+
+        print(f"Threshold {threshold:.2f}: {kept_count} detections kept")
+
+    print("======================================\n")
+
+    output = frame.copy()
+
+    for i in range(len(boxes)):
+
+        if best_score[i] < 0.50:
+            continue
+
+        x, y, w, h = boxes[i]
+
+        confidence = best_score[i]
+        class_id = best_class[i]
+        class_name = class_names[class_id]
+
+        color = (
+            int((37 * class_id) % 255),
+            int((67 * class_id) % 255),
+            int((97 * class_id) % 255)
         )
 
-    return scores, best_class, best_score
+        cv2.rectangle(
+            output,
+            (x, y),
+            (x + w, y + h),
+            color,
+            2
+        )
+
+        label = f"{class_name} {confidence:.2f}"
+
+        cv2.putText(
+            output,
+            label,
+            (x, y - 10),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.6,
+            color,
+            2
+        )
+
+        # Confidence bar
+        bar_width = int(150 * confidence)
+
+        cv2.rectangle(
+            output,
+            (x, y + h + 10),
+            (x + 150, y + h + 25),
+            (60, 60, 60),
+            -1
+        )
+
+        cv2.rectangle(
+            output,
+            (x, y + h + 10),
+            (x + bar_width, y + h + 25),
+            color,
+            -1
+        )
+
+    return output
 
 
-# Example usage
-objectness = np.array([0.9, 0.6, 0.8])
+# Example data
 
-class_scores = np.array([
-    [0.1, 0.8, 0.2],
-    [0.7, 0.2, 0.1],
-    [0.3, 0.4, 0.9]
+frame = np.zeros((720, 1280, 3), dtype=np.uint8)
+
+boxes = np.array([
+    [100, 100, 200, 150],
+    [450, 180, 180, 220],
+    [800, 120, 160, 160]
 ])
 
-confidence_explorer(objectness, class_scores)
+objectness = np.array([0.90, 0.75, 0.85])
+
+class_scores = np.array([
+    [0.10, 0.85, 0.20],
+    [0.75, 0.10, 0.25],
+    [0.15, 0.30, 0.95]
+])
+
+class_names = [
+    "Person",
+    "Car",
+    "Dog"
+]
+
+result = analyze_detections(
+    frame,
+    boxes,
+    objectness,
+    class_scores,
+    class_names
+)
+
+cv2.imshow("Detection Confidence Lab", result)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
