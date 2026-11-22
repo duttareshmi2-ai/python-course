@@ -1,0 +1,5 @@
+depth.onnx: Depth Anything V2 Small, the 8-bit ONNX file onnx/model_uint8.onnx from the Hugging Face repository
+onnx-community/depth-anything-v2-small (https://huggingface.co/onnx-community/depth-anything-v2-small), tagged Apache-2.0 there.
+Original model: Depth Anything V2 Small (https://huggingface.co/depth-anything/Depth-Anything-V2-Small), Apache-2.0
+(checked Nov 3, 2026). Licence text: LICENSE-Depth-Anything-V2-Apache-2.0.txt.
+Only the Small model is Apache-2.0; the larger Depth Anything V2 models have a different, non-commercial licence.

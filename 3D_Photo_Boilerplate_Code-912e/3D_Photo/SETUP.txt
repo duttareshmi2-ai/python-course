@@ -1,0 +1,15 @@
+3D PHOTO: SETUP
+
+1. Keep this folder whole: photo_3d.py, depth.onnx (the AI model, 27 MB) and requirements.txt must stay together.
+2. Open a terminal INSIDE this folder and run:
+       python photo_3d.py
+   (on Mac or Linux you may need python3 instead of python). The first run installs opencv-python, numpy and
+   onnxruntime from requirements.txt by itself. If that fails, install them once by hand:
+       python -m pip install -r requirements.txt
+   Use the same Python that runs the program.
+3. A window called "3D Photo" opens with your camera. Click on it once, so it gets your key presses.
+
+Needs: Python 3.10 or newer and a webcam. No internet is needed after the install. Nothing you film leaves your
+computer; a 3D photo video is saved only when you press SPACE, in this folder.
+If the window closes at once, read the terminal: the error is there.
+Camera busy or blocked? Close Zoom, Teams or the camera app. On Windows: Settings > Privacy > Camera, allow apps to use the camera.

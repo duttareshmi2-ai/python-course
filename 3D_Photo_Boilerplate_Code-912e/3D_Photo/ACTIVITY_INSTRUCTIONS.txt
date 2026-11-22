@@ -1,0 +1,48 @@
+3D PHOTO (AI Expert, Module 5, Lesson 4)
+
+WHAT YOU WILL BUILD
+A live camera app with two halves. Left: your camera. Right: a map of how far away the AI thinks every pixel is
+(near = bright yellow, far = dark purple). Press SPACE and your photo starts to wobble like a 3D picture, and a short
+video of it is saved next to the program.
+
+THE AI
+Depth Anything V2 Small, a small AI model (depth.onnx, 27 MB). It looks at ONE ordinary picture and guesses, for every
+pixel, how near it is. It learned this from millions of photos. It runs on your own computer: no internet, no key.
+
+YOUR FILE
+photo_3d.py. Lines marked (given) are done for you: read their notes A to G. You write TODO 1 to TODO 4, in order.
+The TODO comments explain each job in words. Run the program after each TODO and check the result.
+
+STEP 1: Run the starter (setup: see SETUP.txt)
+The camera shows on the left, but the right half is black. Press SPACE: the "3D photo" does not move, and its depth
+map is black too. Why? Read depth() and wobble().
+
+STEP 2: TODO 1, depth(): get the AI's raw answer
+Shrink the picture (width a multiple of 14), turn it into the numbers the model learned on, and run the model.
+Check: press SPACE. The right half is no longer black, but it looks wrong (stripes, or a mostly white patch).
+
+STEP 3: TODO 2, depth(): numbers from 0 (far) to 1 (near)
+Check: press SPACE. The depth map is smooth: near things bright yellow, far things dark purple.
+
+STEP 4: TODO 3, wobble(): make the photo move
+Check: press SPACE. The photo wobbles: near and far things slide opposite ways, the middle distance stays still.
+Look at the edges of near things: they stretch. Why?
+
+STEP 5: TODO 4, keep_measuring(): the AI in the background
+Check: the right half shows a live depth map while you move, and the camera picture stays smooth.
+
+STEP 6: Find what the AI cannot do
+Point the camera at a photo or a poster on a screen or wall, at a mirror or a window, and at a plain white wall.
+What does the depth map say each time, and is it right?
+
+KEYS
+SPACE = make a 3D photo (and back to live)    q or Esc = quit (or close the window)
+
+TIPS
+Sit about an arm's length from the camera, with things at different distances behind you. Making a 3D photo takes a
+few seconds. Errors appear in the terminal, not in the camera window. An error in the background AI does not stop
+the program: the right half just stays black, and the error is in the terminal.
+
+SHOW YOUR PARENT
+Make a 3D photo with something near the camera and the room behind it, play the saved video, and say: "The AI
+guessed the distance of every pixel from one picture, and my code moves near and far pixels differently."
