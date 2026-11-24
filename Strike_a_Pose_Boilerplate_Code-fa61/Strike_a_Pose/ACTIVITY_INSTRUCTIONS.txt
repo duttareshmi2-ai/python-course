@@ -1,0 +1,52 @@
+STRIKE A POSE (AI Expert, Module 5, Lesson 5)
+
+WHAT YOU WILL BUILD
+A body game for your camera. A pose appears on the screen, like "T-pose!" or "Arms up!". Copy it with your body and
+hold it for 1 second: "Nice!" flashes, you score a point and the game saves a photo. Five poses, 10 seconds each.
+
+THE AI
+MoveNet Lightning, a small AI model (movenet.onnx) from Google, trained on photos of people moving. For one person it
+answers with 17 body points (nose, eyes, ears, shoulders, elbows, wrists, hips, knees, ankles). Each point is
+(y, x, how sure), all from 0 to 1. It runs on your own computer.
+
+YOUR FILE
+strike_a_pose.py. Lines marked (given) are done for you: read their notes A to H. You write TODO 1 to TODO 4, in order.
+The TODO comments explain each job in words. Run the program after each TODO and check the result.
+
+STEP 1: Run the starter (setup: see SETUP.txt)
+The game runs: a pose name, a timer, a stick figure of the pose to copy. But no skeleton appears on you, the bar always
+says "match 0%", and the end screen says "You scored 0 of 5!". Why? Read find_body().
+
+STEP 2: TODO 1, find_body(): get the 17 points from the AI
+Pad the frame to a square, resize to 192 x 192, change BGR to RGB as int32, add the front axis: (1, 192, 192, 3).
+Run the model and turn each (y, x, sure) into (x in pixels, y in pixels, sure).
+Check: stand in front of the camera. A yellow skeleton follows your body. (The bar still says "match 0%": TODO 2.)
+
+STEP 3: TODO 2, match(): compare angles, the short way round
+Skip unsure arms (less than 0.3 sure). Find each angle's difference to the target the short way round the circle.
+Score = 100 minus the mean difference, never below 0.
+Check: the bar says "match 10%" whatever you do. The angles are still placeholders: TODO 3 fixes that.
+
+STEP 4: TODO 3, arm_angles(): from points to angles
+For each arm bone (shoulder to elbow, elbow to wrist), the angle is np.arctan2(how far down, how far right), in degrees.
+Check: the match % follows your arms. Copy the pose: it goes over 80% and the bar turns green.
+
+STEP 5: TODO 4: hold it to score
+Remember when the match first reached 80%. After 1 second held: score + 1, "Nice!", save a photo, next pose.
+When the time is up: next pose, no point.
+Check: hold a pose for 1 second. "Nice!" flashes, the score goes up and a pose_ photo appears in this folder.
+
+STEP 6: Find what the AI cannot do
+Hide one arm behind your back. Stand so close that your arms leave the picture. Let a friend step in next to you.
+Stand sideways. What happens each time, and why?
+
+KEYS
+r = play again    q or Esc = quit (or close the window)
+
+TIPS
+Step back so your head, shoulders, elbows and hands are all in the picture. Good light helps the AI be sure.
+Errors appear in the terminal, not in the camera window.
+
+SHOW YOUR PARENT
+Score 5 of 5, and say: "The AI finds 17 points on my body, and my code turns my arms into angles and checks them
+against the pose."

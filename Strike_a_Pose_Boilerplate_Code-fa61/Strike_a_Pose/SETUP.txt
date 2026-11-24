@@ -1,0 +1,15 @@
+STRIKE A POSE: SETUP
+
+1. Keep this folder whole: strike_a_pose.py and movenet.onnx (the AI model, 9 MB) must stay together.
+2. Open a terminal INSIDE this folder and install the three packages once:
+       python -m pip install -r requirements.txt
+   (on Mac or Linux you may need python3 instead of python). Use the same Python that runs the program.
+3. Run:
+       python strike_a_pose.py
+4. A window called "Strike a Pose" opens with your camera. Click on it once, so it gets your key presses.
+5. Step back until the camera sees you from your head to your waist, with both arms in view.
+
+Needs: Python 3.10 or newer and a webcam. No internet is needed after the install. Nothing you film leaves your computer.
+The game saves a pose_<time>.jpg photo each time you score. They stay in this folder: delete them when you are done.
+If the window closes at once, read the terminal: the error is there.
+Camera busy or blocked? Close Zoom, Teams or the camera app. On Windows: Settings > Privacy > Camera, allow apps to use the camera.

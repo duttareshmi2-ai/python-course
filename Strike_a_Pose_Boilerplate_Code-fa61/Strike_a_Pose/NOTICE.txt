@@ -1,0 +1,4 @@
+movenet.onnx: MoveNet SinglePose Lightning body-pose model by Google, ONNX export from the Hugging Face repository
+Xenova/movenet-singlepose-lightning (https://huggingface.co/Xenova/movenet-singlepose-lightning, file onnx/model.onnx),
+tagged Apache-2.0 there (checked Nov 3, 2026). The original MoveNet is published by Google on TensorFlow Hub under Apache-2.0.
+The file is unchanged. Licence text: LICENSE-MoveNet-Apache-2.0.txt.
