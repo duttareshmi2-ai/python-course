@@ -1,0 +1,32 @@
+[
+ {
+  "style": "mondrian",
+  "painting": "Piet Mondriaan, 1930 - Mondrian Composition II in Red, Blue, and Yellow.jpg",
+  "licence": "Public domain",
+  "source": "https://commons.wikimedia.org/wiki/File:Piet_Mondriaan,_1930_-_Mondrian_Composition_II_in_Red,_Blue,_and_Yellow.jpg"
+ },
+ {
+  "style": "great_wave",
+  "painting": "Tsunami by hokusai 19th century.jpg",
+  "licence": "Public domain",
+  "source": "https://commons.wikimedia.org/wiki/File:Tsunami_by_hokusai_19th_century.jpg"
+ },
+ {
+  "style": "starry_night",
+  "painting": "Van Gogh - Starry Night - Google Art Project.jpg",
+  "licence": "Public domain",
+  "source": "https://commons.wikimedia.org/wiki/File:Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"
+ },
+ {
+  "style": "kandinsky",
+  "painting": "Vassily Kandinsky, 1913 - Composition 7.jpg",
+  "licence": "Public domain",
+  "source": "https://commons.wikimedia.org/wiki/File:Vassily_Kandinsky,_1913_-_Composition_7.jpg"
+ },
+ {
+  "style": "van_gogh_crows",
+  "painting": "Vincent van Gogh - Wheatfield with crows - Google Art Project.jpg",
+  "licence": "Public domain",
+  "source": "https://commons.wikimedia.org/wiki/File:Vincent_van_Gogh_-_Wheatfield_with_crows_-_Google_Art_Project.jpg"
+ }
+]

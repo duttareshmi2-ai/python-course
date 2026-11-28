@@ -1,0 +1,21 @@
+LIVING PAINTING: where the AI models come from, and their licences
+
+candy_style.onnx, mosaic_style.onnx, udnie_style.onnx, rain-princess_style.onnx (keys 1 to 4)
+  Fast Neural Style Transfer, ONNX model zoo (https://github.com/onnx/models, validated/vision/style_transfer/fast_neural_style,
+  opset 9 files), converted from PyTorch examples (https://github.com/pytorch/examples/tree/main/fast_neural_style).
+  Licence: BSD-3-Clause, Copyright (c) 2017, Pytorch contributors (LICENSE-fast-neural-style-BSD-3-Clause.txt).
+  Each model learned one style from one painting or picture. Renamed only (for example candy-9.onnx -> candy_style.onnx).
+
+any_style_transfer.onnx (keys 5 to 9)
+  The "style transfer" part of Google Magenta's arbitrary image stylization model
+  (style_transfer_f16_384.tflite, from https://storage.googleapis.com/download.tensorflow.org/models/tflite/arbitrary_style_transfer/),
+  Copyright The Magenta Team, Apache License 2.0 (LICENSE-Magenta-Apache-2.0.txt).
+  Changed by Codingal: converted from TFLite to ONNX with tf2onnx 1.17, and the picture size made free (not only 384x384).
+
+style_vectors.npz
+  100 numbers per style, made once with Magenta's style prediction model (style_predict_f16_256.tflite, Apache License 2.0)
+  from public-domain paintings listed in STYLE_SOURCES.json (Wikimedia Commons). The paintings themselves are not included.
+
+modnet.onnx (the cut-out, as in Lesson 2)
+  MODNet portrait matting model, ONNX export from https://huggingface.co/Xenova/modnet (tagged Apache-2.0 there).
+  Original MODNet: https://github.com/ZHKKKe/MODNet, Apache License 2.0 (LICENSE-MODNet-Apache-2.0.txt).

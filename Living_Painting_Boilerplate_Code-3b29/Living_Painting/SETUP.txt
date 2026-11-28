@@ -1,0 +1,16 @@
+LIVING PAINTING: SETUP
+
+1. Unzip the folder and keep it whole: living_painting.py, the 6 .onnx files (the AI models), style_vectors.npz and
+   requirements.txt must stay together.
+2. Open a terminal INSIDE this folder and run:
+       python living_painting.py
+   (on Mac or Linux you may need python3 instead of python).
+   The first line of the program installs opencv-python, numpy and onnxruntime with the same Python. The first run
+   needs the internet; after that it starts in about a second.
+3. A window called "Living Painting" opens with your camera. Click on it once, so it gets your key presses.
+
+Needs: Python 3.10 or newer and a webcam. Nothing you film leaves your computer.
+If the window closes at once, read the terminal: the error is there.
+If the install fails, run it by hand once:  python -m pip install -r requirements.txt
+Camera busy or blocked? Close Zoom, Teams or the camera app. On Windows: Settings > Privacy > Camera, allow apps to use the camera.
+Where the models come from, and their licences: NOTICE.txt.

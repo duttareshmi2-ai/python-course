@@ -1,0 +1,51 @@
+LIVING PAINTING (AI Expert, Module 5, Lesson 6)
+
+WHAT YOU WILL BUILD
+A live camera app with two halves. Left: your camera. Right: your room, painted by AI in the style of a famous
+painting, while YOU stay real. Keys 1 to 9 change the style, 0 shows a rules filter with no AI, s saves.
+
+THE AIs
+- 4 style networks (candy, mosaic, udnie, rain-princess): each one learned ONE style.
+- 1 any-style network (Google Magenta): paints ANY painting's style, given that painting's 100 style numbers
+  (style_vectors.npz holds them for Starry Night, The Great Wave, Kandinsky, Mondrian and Wheatfield with Crows).
+- MODNet, the cut-out AI from Lesson 2: finds you, so you are not painted.
+All of them run on your own computer. No picture leaves it.
+
+YOUR FILE
+living_painting.py. Lines marked (given) are done for you: read their notes A to G. You write TODO 1 to TODO 4, in order.
+The TODO comments explain each job in words. Run the program after each TODO and check the result.
+
+STEP 1: Run the starter (setup: see SETUP.txt)
+Both halves show the same picture, and the top right says "cut-out 0, painting 0 per second". Why? Read the line
+under TODO 1.
+
+STEP 2: TODO 1: two AIs in the background
+Make two threads that run keep_working: one paints (with the chosen style), one makes the cut-out.
+Check: the top right says cut-out and painting more than 0 per second. Nothing is painted yet: that is TODO 2.
+
+STEP 3: TODO 2, paint(): one network per style (keys 1 to 4)
+Shrink to 180 high (width a multiple of 4), RGB float32 from 0 to 255, shape (1, 3, 180, 240), run, clip, back to a picture.
+Check: the right half looks like a candy painting. Keys 2, 3 and 4 change the style. The camera stays at about 30.
+
+STEP 4: TODO 3, paint(): one network, any painting (keys 5 to 9)
+RGB from 0 to 1, shape (1, 240, 320, 3), and the painting's 100 style numbers as the second input.
+Check: keys 5 to 9 paint five different famous paintings, all with the same network.
+
+STEP 5: TODO 4: keep YOU real
+Blend with the matte: you from the camera picture, the room from the painting.
+Check: the room is painted, you are not.
+
+STEP 6: Learned or written?
+Press 0 (rules people wrote), then 1 (a learned style). Which looks more like a painting? Hold up a toy: is it
+painted? Why?
+
+KEYS
+1-9 = AI styles    0 = rules filter (no AI)    s = save (painting_<time>.jpg in this folder)    q or Esc = quit
+
+TIPS
+The first run installs the packages: it needs the internet. Sit about an arm's length from the camera, with nobody
+else in view. Errors appear in the terminal, not in the camera window. An error inside one of the AIs says
+"Exception in thread" in the terminal, and that AI's rate drops to 0.
+
+SHOW YOUR PARENT
+Save a painting and say: "One AI finds me, another paints the room, and my code puts them together. Both AIs work in the background, so the camera stays smooth."
